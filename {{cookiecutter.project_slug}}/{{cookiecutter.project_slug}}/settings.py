@@ -110,11 +110,11 @@ WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD':env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT")
+        'NAME': env("POSTGRES_DB_NAME"),
+        'USER': env("POSTGRES_DB_USER"),
+        'PASSWORD':env("POSTGRES_DB_PASSWORD"),
+        'HOST': env("POSTGRES_DB_HOST"),
+        'PORT': env("POSTGRES_DB_PORT")
     }
 }
     
@@ -130,11 +130,11 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'my-app-db',
-        'USER': 'mysql',
-        'PASSWORD': 'password',
-        'HOST': 'db',
-        'PORT': 3306,
+        'NAME': env("MYSQL_DB_NAME"),
+        'USER': env("MYSQL_DB_USER"),
+        'PASSWORD': env("MYSQL_DB_PASSWORD"),
+        'HOST': env("MYSQL_DB_HOST"),
+        'PORT': env("MYSQL_DB_PORT"),
     }
 }
 
@@ -191,4 +191,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "{{cookiecutter.email}}"
-EMAIL_HOST_PASSWORD = "your_password"
+EMAIL_HOST_PASSWORD = env("MAIL_PASSWORD")
