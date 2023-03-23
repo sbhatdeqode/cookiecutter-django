@@ -44,3 +44,5 @@ urllib3==1.26.15
 celery==4.4.1
 redis==3.4.1
 django-environ==0.10.0
+mysqlclient==2.1.1
+django-mysql==2.2.0

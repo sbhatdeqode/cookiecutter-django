@@ -126,12 +126,18 @@ DATABASES = {
     }
 }
 {% else %}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.{{cookiecutter.database_server}}',
-        
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'my-app-db',
+        'USER': 'mysql',
+        'PASSWORD': 'password',
+        'HOST': 'db',
+        'PORT': 3306,
     }
 }
+
 {% endif %}
 
 

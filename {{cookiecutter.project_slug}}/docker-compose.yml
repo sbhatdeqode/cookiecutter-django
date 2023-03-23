@@ -47,6 +47,59 @@ services:
       - db
       - redis
       - app
+{% elif cookiecutter.database_server == "mysql" %}
+
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: >
+      sh -c "pwd &&
+             python3 manage.py migrate &&
+             python3 manage.py runserver 0.0.0.0:8000"
+ 
+    environment:
+      MYSQL_DATABASE: 'my-app-db'
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    depends_on:
+      - db
+             
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'my-app-db'
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+  
+  redis:
+    image: redis:alpine
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A {{cookiecutter.project_slug}} worker -l info
+    volumes:
+      - .:/app
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+      - redis
+      - app
+
 
 {% else %}
 
