@@ -10,6 +10,7 @@ Using this Cookiecutter template easily build your DRF app.
 
 ## Features
 
+- Django-allauth is configured for authentication.
 - Swagger documentation.
 - Multiple database server options.
 - Multiple CI tool option.
