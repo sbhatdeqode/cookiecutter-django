@@ -1,0 +1,26 @@
+stages:
+  - lint
+  - test
+
+precommit:
+  stage: lint
+  image: python:3.10
+  variables:
+    PRE_COMMIT_HOME: ${CI_PROJECT_DIR}/.cache/pre-commit
+  cache:
+    paths:
+      - ${PRE_COMMIT_HOME}
+  before_script:
+    - pip install -q pre-commit
+  script:
+    - pre-commit run --show-diff-on-failure --color=always --all-files
+
+pytest:
+  stage: test
+  image: python:3.10
+  tags:
+    - python
+  before_script:
+    - pip install -r requirements/local.txt
+  script:
+    - pytest

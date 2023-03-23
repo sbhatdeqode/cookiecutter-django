@@ -1,0 +1,18 @@
+{
+    "project_name": "My Awesome Project",
+    "repo_name": "repo",
+    "email": "abc@example.com",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "app_name" : "user",
+    "database_server": [
+      "sqlite",
+      "mysql",
+      "postgresql"
+    ],
+    "ci_tool": [
+      "github",
+      "gitlab",
+      "circleci"
+    ],
+    "_copy_without_render": [".github/*"]
+  }
