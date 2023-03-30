@@ -187,9 +187,21 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # mail configuration
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+{% if cookiecutter.mail_service == "gmail"  %}
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+{% elif cookiecutter.mail_service == "mailgun"  %}
+EMAIL_HOST = 'smtp.mailgun.org'
+{% elif cookiecutter.mail_service == "outlook"  %}
+EMAIL_HOST = 'smtp-mail.outlook.com'
+{% else  %}
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+{% endif  %}
 EMAIL_HOST_USER = "{{cookiecutter.email}}"
 EMAIL_HOST_PASSWORD = env("MAIL_PASSWORD")
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+
+
