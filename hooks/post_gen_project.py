@@ -43,7 +43,7 @@ def main():
         
     if "{{ cookiecutter.add_celery }}" == "no":
         remove_celery_file()
-    print("Project initialized, keep up the good work!   {{ cookiecutter.ci_tool }}")
+    print("Project initialized, keep up the good work!")
 
 
 if __name__ == "__main__":
