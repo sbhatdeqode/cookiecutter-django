@@ -32,10 +32,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["0.0.0.0", "localhost",]
 
+{% if cookiecutter.add_celery == "yes"  %}
 # Celery settings
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
-
+{% endif %}
 # Application definition
 
 INSTALLED_APPS = [

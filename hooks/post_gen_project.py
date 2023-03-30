@@ -1,8 +1,9 @@
 
 import os
-import random
 import shutil
 
+def remove_celery_file():
+    os.remove("./{{cookiecutter.project_slug}}/celery.py")
 
 def remove_dotgitlabciyml_file():
     os.remove(".gitlab-ci.yml")
@@ -28,19 +29,20 @@ def main():
 
         remove_dotgitlabciyml_file()
         remove_dotcircleci_folder()
-        move_dotgithub_folder()
+        
 
     if "{{ cookiecutter.ci_tool }}".lower() == "gitlab":
-        move_dotgitlabciyml_file()
+        
         remove_dotcircleci_folder()
         remove_dotgithub_folder()
 
     if "{{ cookiecutter.ci_tool }}".lower() == "circleci":
-        move_dotcircleci_folder()
+        
         remove_dotgithub_folder()
         remove_dotgitlabciyml_file()
         
-    
+    if "{{ cookiecutter.add_celery }}" == "no":
+        remove_celery_file()
     print("Project initialized, keep up the good work!   {{ cookiecutter.ci_tool }}")
 
 
